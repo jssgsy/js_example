@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span id="minute">25</span> :
+<span id="second">00</span>
+<span id="totalSecond" hidden>0</span>
+<button onclick="start()">开始</button>
+<button onclick="pause()">暂停</button>
+<button onclick="reset()">复位</button>
+<script>
+let minuteEle = document.getElementById('minute');
+let secondEle = document.getElementById('second');
+let totalSecondEle = document.getElementById('totalSecond');
+let timer;
+
+function start() {
+    timer = setInterval(() => {
+        totalSecondEle.innerText = (++totalSecondEle.innerText).toString();
+        showTime()
+    }, 1000);
+}
+
+function pause() {
+    clearInterval(timer);
+}
+function reset() {
+    clearInterval(timer);
+    minuteEle.innerText = '25';
+    secondEle.innerText = '00';
+}
+
+function showTime() {
+    // 两者的顺序也很重要，否则到60秒整时会出现22:00，然后又出现22:59的情况
+    showSecond()
+    showMinute()
+}
+function showSecond() {
+    let realSecond = getSecond(totalSecondEle.innerText);
+    if (realSecond === 0) {
+        // 避免出现显示出60秒
+        secondEle.innerText = '0';
+    } else {
+        secondEle.innerText = (60 - realSecond).toString();
+    }
+}
+
+function showMinute() {
+    let realMinute = getMinute(totalSecondEle.innerText);
+    let realSecond = getSecond(totalSecondEle.innerText);
+    // 这里是realMinute === 25，而不是realMinute === 0，因为realMinute一定是递增的
+    if (realSecond === 0 && realMinute === 1) {
+        // 删除timer
+        alert('已完成番茄时钟')
+        return;
+    }
+    // 注：从24开始
+    minuteEle.innerText = (24 - realMinute).toString();
+}
+
+// 秒转真实秒
+function getSecond(totalSecond) {
+    return totalSecond % 60;
+}
+
+// 秒转真实分
+function getMinute(totalSecond) {
+    return Math.floor((totalSecond % 3600) / 60)
+}
+</script>
+</body>
+</html>
