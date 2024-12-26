@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label for="input">待办事项:</label>
+<input id="input" type="text"/>
+<button onclick="add()">Add</button>
+<ul id="taskUl"></ul>
+<!--放body标签最后-->
+<script>
+    let inputEle = document.getElementById('input');
+    let ulEle = document.getElementById('taskUl');
+    function add() {
+        // 获取输入框中的值
+        if (!inputEle.value || !inputEle.value.trim()) {
+            alert('请输入待办事项')
+            return
+        }
+
+        // 创建<li>元素
+        let liElement = document.createElement('li');
+        liElement.textContent = inputEle.value;
+        // 创建<button>元素
+        let buttonElement = document.createElement('button');
+        buttonElement.textContent = '删除';
+        // 将<button>挂在<li>下
+        liElement.appendChild(buttonElement);
+
+        // 将<li>挂在<ul>下
+        ulEle.appendChild(liElement);
+        // 添加点击事件，点击button时删除button的父元素
+        buttonElement.onclick = function () {
+            buttonElement.parentElement.remove()
+        }
+        // 清空输入框的值
+        inputEle.value = '';
+    }
+</script>
+</body>
+</html>
