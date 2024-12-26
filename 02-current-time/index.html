@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span id = 'hour'></span>
+<span id = 'minute'></span>
+<span id = 'second'></span>
+<br>
+<span id = 'year'></span>
+<span id = 'month'></span>
+<span id = 'day'></span>
+
+<script>
+  function displayDate() {
+    let date = new Date();
+    let year = document.getElementById('year');
+    let month = document.getElementById('month');
+    let day = document.getElementById('day');
+    let hour = document.getElementById('hour');
+    let minute = document.getElementById('minute');
+    let second = document.getElementById('second');
+
+    year.innerHTML = date.getFullYear() + '-';
+    month.innerHTML = date.getMonth() + '-';
+    day.innerHTML = date.getDay().toString();
+    hour.innerHTML = date.getHours() + ':';
+    minute.innerHTML = date.getMinutes() + ':';
+    second.innerHTML = date.getSeconds().toString();
+  }
+
+  displayDate()
+  setInterval(displayDate, 1000 )
+</script>
+</body>
+</html>
