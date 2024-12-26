@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span id="hour">00</span><span> : </span>
+<span id="minute">00</span><span> : </span>
+<span id="second">00</span>
+<span id="totalSecond" hidden>0</span>
+<br>
+<button onclick="startTimer()">Start</button>
+<button onclick="stopTimer()">Stop</button>
+<button onclick="resetTimer()">Reset</button>
+
+<script>
+    console.log(1 / 3600);
+    let hourEle = document.getElementById('hour');
+    let minuteEle = document.getElementById('minute');
+    let secondEle = document.getElementById('second');
+    let totalSecondEle = document.getElementById('totalSecond');
+
+    let timer;
+    function startTimer() {
+        timer = setInterval(() => {
+            totalSecondEle.textContent = (++totalSecondEle.textContent).toString();
+            showTime()
+        }, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(timer);
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        totalSecondEle.textContent = '0';
+        // 清空
+        showTime();
+    }
+
+    function showTime() {
+        hourEle.textContent = Math.floor(totalSecondEle.textContent / 3600).toString();
+        minuteEle.textContent = Math.floor((totalSecondEle.textContent % 3600) / 60).toString();
+        secondEle.textContent = Math.floor(totalSecondEle.textContent % 60).toString();
+    }
+
+    // 重点在于如何将秒转换成时、分、秒
+    let secondsOfNum = 0;
+    // 好理解，一小时等于3600秒
+    let hours = secondsOfNum / 3600;
+    // 好理解，取余即是循环；
+    let seconds = secondsOfNum % 60;
+
+    // 难点
+    // secondsOfNum % 3600即剔除小时后剩余的秒数；
+    // 一分等于60秒，现在有secondsOfNum % 3600多秒，转成分钟就是再 /60
+    // 即这里其实先用secondsOfNum % 3600去除了对【小时】的干扰，单纯的变成了秒转换成分；
+    let minutes = (secondsOfNum % 3600) / 60;
+
+</script>
+</body>
+</html>
