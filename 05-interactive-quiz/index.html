@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="question"></div>
+<div id="option"></div>
+
+<script>
+    let questionArr = [
+        {
+            question: "What is the capital of France?",
+            options: ["Berlin", "Madrid", "Paris", "Rome"],
+            correctAnswer: "Paris",
+        },
+        {
+            question: "Which planet is known as the Red Planet?",
+            options: ["Earth", "Mars", "Venus", "Jupiter"],
+            correctAnswer: "Mars",
+        },
+        {
+            question: "What is the largest mammal in the world?",
+            options: ["Elephant", "Blue Whale", "Giraffe", "Polar Bear"],
+            correctAnswer: "Blue Whale",
+        },
+    ];
+    // 当前处理的问题索引
+    let currentQuestionIndex = 0;
+    let questionEle = document.getElementById('question');
+    let optionEle = document.getElementById('option');
+
+    function showQuestion() {
+        // 首先检查是否已答题结束
+        if (currentQuestionIndex === questionArr.length) {
+            alert('You have answered all the question');
+            return
+        }
+        // 首先清空前一个问题，可能有内存泄漏(监听器资源未被清除)
+        optionEle.innerHTML = '';
+
+        // 获取当前问题
+        let question = questionArr[currentQuestionIndex];
+        questionEle.innerText = question.question;
+        question.options.forEach((value ,key) => {
+            let childDiv = document.createElement('div');
+            childDiv.innerText = `${key + 1}. ${value}`;
+            childDiv.addEventListener('click', () => {
+                // 检查答案是否正确
+                if (value === question.correctAnswer) {
+                    alert('Correct!')
+                } else {
+                    alert('Incorrect!')
+                }
+                currentQuestionIndex++;
+                showQuestion()
+            });
+            optionEle.appendChild(childDiv);
+        })
+    }
+
+
+    showQuestion();
+</script>
+</body>
+</html>

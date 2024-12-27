@@ -13,4 +13,5 @@ totalSecond         分  秒
 62(2)               23  58
 
 # 补充
-02-current-time、03-stopwatch、03-pomodoro三个模块都是和时间相关，一起看，掌握之后处理基本时间相关问题应该ok
+* 02-current-time、03-stopwatch、03-pomodoro三个模块都是和时间相关，一起看，掌握之后处理基本时间相关问题应该ok;
+* 原作的解法更简单，直观，值得参考；
