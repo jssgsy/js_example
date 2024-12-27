@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="width: 800px; height: 750px;">
+    <img id="myImg" src="./images/1.jpeg" alt="xxx" />
+</div>
+
+<br>
+<br>
+<br>
+<button onclick="before()">上一张</button>
+<button onclick="next()">下一张</button>
+<script>
+    let pngArr = ['./images/1.jpeg', './images/2.jpeg', './images/3.jpeg'];
+    let imgIndex = 0;
+    let imgElem = document.getElementById('myImg');
+
+    function before() {
+        imgIndex--;
+        if (Math.abs(imgIndex) === pngArr.length) {
+            imgIndex = 0;
+        }
+        let newSrc = pngArr[(imgIndex + pngArr.length) % pngArr.length];
+        imgElem.setAttribute('src', newSrc);
+    }
+    function next() {
+        imgIndex++;
+        let newSrc = pngArr[imgIndex % pngArr.length];
+        imgElem.setAttribute('src', newSrc);
+    }
+</script>
+</body>
+</html>
