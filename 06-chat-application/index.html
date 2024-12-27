@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #mydiv {
+            width: 200px;
+            /*使用min-height和max-height时不要设置height属性*/
+            /*height: 50px;*/
+            min-height: 50px;
+            max-height: 100px;
+            border: 1px solid purple;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div id = 'mydiv'></div>
+<input type = 'text' id = 'myText' />
+<button onclick="sendText()">Send</button>
+
+<script>
+
+    let divEle = document.getElementById('mydiv');
+    let inputEle = document.getElementById('myText');
+
+    function sendText() {
+        if (divEle.innerHTML) {
+            divEle.innerHTML = divEle.innerHTML + '<br>' + inputEle.value;
+        } else {
+            divEle.innerHTML = inputEle.value;
+        }
+        divEle.scrollTop = divEle.scrollHeight;
+        inputEle.value = ''
+    }
+</script>
+</body>
+</html>
