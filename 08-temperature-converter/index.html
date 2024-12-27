@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label for="celsius">摄氏度：</label>
+<input id="celsius" type="number" oninput="convertToFahrenheit()" />
+
+<label for="fahrenheit">华氏度：</label>
+<input id="fahrenheit" type="number" oninput="convertToCelsius()" />
+
+<script>
+  let fahrenheitEle = document.getElementById('fahrenheit');
+  let celsiusEle = document.getElementById('celsius');
+
+  function convertToFahrenheit() {
+    fahrenheitEle.value = parseInt(celsiusEle.value) + 30;
+  }
+  function convertToCelsius() {
+    celsiusEle.value = parseInt(fahrenheitEle.value) - 30;
+  }
+</script>
+</body>
+</html>
