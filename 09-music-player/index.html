@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<audio id="myAudio" controls>
+    <source src = 'audio/Past-Lives.mp3' type='audio/mpeg'>
+</audio>
+<button onclick = 'play()'>Play</button>
+<button onclick = 'pause()'>Pause</button>
+
+<script>
+    let audioEle = document.getElementById('myAudio');
+    function play() {
+        audioEle.play();
+    }
+    function pause() {
+        audioEle.pause();
+    }
+</script>
+</body>
+</html>
