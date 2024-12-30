@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+<div id="app">
+    <button onclick="show(this.textContent)">Pasta Carbonara</button><br>
+    <button onclick="show(this.textContent)">Chicken Alfredo</button><br>
+    <button onclick="show(this.textContent)">Vegetable Stir-Fry</button>
+</div>
+
+<div hidden id="myDiv">
+    <h1 id="title"></h1>
+    <p id="description"></p>
+    <!--方法名不要用close，应该是内置的-->
+    <button onclick="hiddenContentDiv()">close</button>
+</div>
+
+<script>
+    let mydivElement = document.getElementById('myDiv');
+    let h1Element = document.getElementById('title');
+    let pElement = document.getElementById('description');
+
+    let map = new Map();
+    map.set('Pasta Carbonara', 'Delicious pasta with eggs, cheese, pancetta, and black pepper.');
+    map.set('Chicken Alfredo', 'Creamy pasta dish with grilled chicken, Alfredo sauce, and Parmesan cheese.');
+    map.set('Vegetable Stir-Fry', 'Healthy stir-fried vegetables with tofu and soy sauce.');
+
+    function show(content) {
+        mydivElement.hidden = false;
+        h1Element.innerText = content;
+        pElement.innerText = map.get(content);
+    }
+
+    function hiddenContentDiv() {
+        mydivElement.hidden = true;
+    }
+</script>
+
+</body>
+</html>
