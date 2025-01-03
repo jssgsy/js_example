@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        header {
+            text-align: center;
+            background-color: #333;
+            font-size: larger;
+            color: #fff;
+            height: 100px;
+            line-height: 100px;
+        }
+        div {
+            width: 600px;
+            height: 138px;
+            border: 1px solid red;
+            margin: 10px;
+            overflow: hidden;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            /*justify-content: flex-start;*/
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<header>My Blog</header>
+<main></main>
+<script>
+    let postArr = [{
+        title: 'First Post',
+        content: 'This is the content of the first post.This is the content of the first post.This is the content of the first post.This is the content of the first post.This is the content of the first post.This is the content of the first post.',
+    },{
+        title: 'Second Post',
+        content: 'This is the content of the second post.',
+    },]
+    postArr.forEach(post => {
+        let divElement = document.createElement('div');
+        // 重点：动态创建的元素一般可以加个类名，这样方便选择，也方便选择其后代；
+        // divElement.classList.add("post");
+
+        let h1Element = document.createElement('h1');
+        h1Element.innerText = post.title;
+        let pElement = document.createElement('p');
+        pElement.innerText = post.content;
+        divElement.appendChild(h1Element);
+        divElement.appendChild(pElement);
+        document.querySelector('main').appendChild(divElement);
+    })
+
+
+</script>
+</body>
+</html>
